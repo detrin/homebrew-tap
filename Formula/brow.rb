@@ -126,6 +126,8 @@ class Brow < Formula
 
   def install
     virtualenv_install_with_resources
+    # Install missing dependencies that don't have source distributions
+    system libexec/"bin/pip", "install", "--upgrade", "pydantic", "playwright"
   end
 
   def caveats
