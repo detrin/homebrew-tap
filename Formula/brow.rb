@@ -10,8 +10,12 @@ class Brow < Formula
   depends_on "python@3.12"
 
   def install
-    virtualenv_install_with_resources
-    # Chromium installation will be done on first run
+    # Create venv with pip
+    system Formula["python@3.12"].bin/"python3.12", "-m", "venv", libexec
+    system libexec/"bin/pip", "install", "--upgrade", "pip"
+    system libexec/"bin/pip", "install", "brow-cli==0.1.4"
+    bin.install_symlink libexec/"bin/brow"
+    bin.install_symlink libexec/"bin/playwright"
   end
 
   def caveats
