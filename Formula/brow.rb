@@ -10,7 +10,13 @@ class Brow < Formula
   depends_on "python@3.12"
 
   def install
-    virtualenv_install_with_resources
+    # Create venv with pip (unlike virtualenv_install_with_resources)
+    system Formula["python@3.12"].opt_bin/"python3.12", "-m", "venv", libexec
+    # Install brow-cli with all dependencies from wheels
+    system libexec/"bin/pip", "install", "--quiet", "brow-cli==0.1.4"
+    # Create symlinks in bin
+    bin.install_symlink libexec/"bin/brow"
+    bin.install_symlink libexec/"bin/playwright"
   end
 
   def caveats
