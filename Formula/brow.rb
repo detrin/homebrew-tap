@@ -125,9 +125,8 @@ class Brow < Formula
   end
 
   def install
-    virtualenv_install_with_resources
-    # Install missing dependencies that don't have source distributions
-    system libexec/"bin/pip", "install", "--upgrade", "pydantic", "playwright"
+    venv = virtualenv_create(libexec, "python3.12")
+    venv.pip_install "brow-cli==0.1.4"
   end
 
   def caveats
