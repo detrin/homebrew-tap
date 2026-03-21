@@ -89,11 +89,6 @@ class Brow < Formula
     sha256 "9ad8fa5937ab05218e2b6a4cff30295ad35afd2f83ac592e68c0d871bb0fdbc4"
   end
 
-  resource "playwright" do
-    url "https://files.pythonhosted.org/packages/32/a9/38c4bfa4f4eb6f7fd972c7bf6b0a5e47aef1be68fef3b2f8e5df793e4f98/playwright-1.50.0.tar.gz"
-    sha256 "9e89d4990b3dd79b4df59b8e528d76e9dda9b0ef39b0dc19b06e7811ba0c7507"
-  end
-
   resource "pydantic" do
     url "https://files.pythonhosted.org/packages/69/44/36f1a6e523abc58ae5f928898e4aca2e0ea509b5aa6f6f392a5d882be928/pydantic-2.12.5.tar.gz"
     sha256 "4d351024c75c0f085a9febbb665ce8c0c6ec5d30e903bdb6394b7ede26aebb49"
