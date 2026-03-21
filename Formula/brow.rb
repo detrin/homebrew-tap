@@ -146,6 +146,7 @@ class Brow < Formula
 
   def install
     virtualenv_install_with_resources
+    system bin/"playwright", "install", "chromium"
   end
 
   def caveats
