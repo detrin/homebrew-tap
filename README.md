@@ -7,6 +7,9 @@ Homebrew formulae for detrin's tools.
 ```bash
 brew tap detrin/tap
 brew install brow
+
+# After installation, install Chromium:
+playwright install chromium
 ```
 
 ## Available Formulae
