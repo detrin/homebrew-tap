@@ -11,14 +11,15 @@ class Brow < Formula
 
   def install
     virtualenv_install_with_resources
-    system bin/"playwright", "install", "chromium"
+    # Chromium installation will be done on first run
   end
 
   def caveats
     <<~EOS
-      Chromium is installed automatically during brew install.
-      If you need to reinstall it:
-        playwright install chromium
+      Before using brow, install Chromium with:
+        #{bin}/playwright install chromium
+
+      Or let it install automatically on first run.
     EOS
   end
 
