@@ -3,8 +3,8 @@ class Brow < Formula
 
   desc "Standalone Playwright CLI for agent browser automation"
   homepage "https://github.com/detrin/brow"
-  url "https://files.pythonhosted.org/packages/05/6f/ef52f5d46dd3ec5b9c84125346c87e30ca143e60286e594b9f1803090eec/brow_cli-1.0.3.tar.gz"
-  sha256 "bf46a396f521405ab1c5b0357b746d68a15a5544ce7431122dcc11e27ada77ab"
+  url "https://files.pythonhosted.org/packages/20/61/bc7bb9e07be6753e474ad1d5ebed4d37e29ea2f4efa13c21f713fbc5e31c/brow_cli-1.2.0.tar.gz"
+  sha256 "66e3b0864ffe134bb82f81f100aac8262f2add689c7efb98d7d84bf6d15a966b"
   license "MIT"
 
   depends_on "python@3.12"
@@ -13,7 +13,7 @@ class Brow < Formula
     # Create venv with pip (unlike virtualenv_install_with_resources)
     system Formula["python@3.12"].opt_bin/"python3.12", "-m", "venv", libexec
     # Install brow-cli with all dependencies from wheels
-    system libexec/"bin/pip", "install", "--quiet", "brow-cli==1.0.3"
+    system libexec/"bin/pip", "install", "--quiet", "brow-cli==1.2.0"
     # Create symlinks in bin
     bin.install_symlink libexec/"bin/brow"
     bin.install_symlink libexec/"bin/playwright"
