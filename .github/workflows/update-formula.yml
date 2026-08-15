@@ -1,0 +1,42 @@
+name: Update brow formula
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Bump formula to latest PyPI release
+        id: bump
+        run: python3 .github/scripts/bump_formula.py
+
+      - name: Sanity-check the formula
+        if: steps.bump.outputs.changed == 'true'
+        run: ruby -c Formula/brow.rb
+
+      - name: Install and test via Homebrew
+        if: steps.bump.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          brew tap detrin/tap "$PWD"
+          brew install --verbose --build-from-source detrin/tap/brow
+          brew test detrin/tap/brow
+          brew uninstall detrin/tap/brow
+
+      - name: Commit and push
+        if: steps.bump.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/brow.rb
+          git commit -m "chore: update brow to v${{ steps.bump.outputs.version }}"
+          git push
